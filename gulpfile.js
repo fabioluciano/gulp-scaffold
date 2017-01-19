@@ -12,9 +12,8 @@
     }),
     directory        = require('./gulp/directory'),
     processable      = require('./gulp/processable'),
-    bowerFile        = require('./bower.json'),
-    compodoc         = require('./gulp/compodoc');
-
+    compodoc         = require('./gulp/compodoc'),
+    bowerFile        = require('./bower.json');
   /*
    * Definição das tarefas que serão executadas
    */
