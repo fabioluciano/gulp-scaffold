@@ -10,10 +10,10 @@
       lazy: true,
       camelize: true
     }),
-    directory        = require('./gulp/directory'),
-    processable      = require('./gulp/processable'),
-    compodoc         = require('./gulp/compodoc'),
-    bowerFile        = require('./bower.json');
+    directory        = require('./config/directory'),
+    processable      = require('./config/processable'),
+    compodoc         = require('./config/compodoc'),
+    bowerFile        = require('../bower.json');
   /*
    * Definição das tarefas que serão executadas
    */
