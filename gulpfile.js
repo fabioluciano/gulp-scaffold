@@ -43,62 +43,6 @@
     'watch:component:internacionalization'
   ]);
 
-  /*
-   * Implementação das tarefas a serem executadas
-   */
-  gulp.task('prebuild:cleanup', () => {
-    return del([
-      directory.target.root
-    ]);
-  });
-
-  var buildApplicationJavascript = () => {
-    return gulp.src(processable.javascript)
-      .pipe(plugin.concat('component.js'))
-      .pipe(plugin.ngAnnotate({
-        single_quotes : true
-      }))
-      .pipe(plugin.header(compodoc, { package : bowerFile }))
-      .pipe(gulp.dest(directory.target.javascript));
-  }
-  gulp.task('build:component:javascript', ['prebuild'], buildApplicationJavascript);
-
-  var buildApplicationStylesheet = () => {
-    return gulp.src(processable.stylesheet)
-      .pipe(plugin.less())
-      .pipe(gulp.dest(directory.target.stylesheet));
-  };
-  gulp.task('build:component:stylesheet', ['prebuild'], buildApplicationStylesheet);
-
-  var buildApplicationPage = () => {
-    return gulp.src(processable.page)
-      .pipe(plugin.pug())
-      .pipe(plugin.angularTemplatecache({
-        standalone: true,
-        module : 'component.' + (bowerFile.name).replace('ngc-', '') + '.view',
-        transformUrl : function(templateName) {
-          return templateName.replace('view/', bowerFile.name + '/');
-        }
-      }))
-      .pipe(plugin.debug())
-      .pipe(gulp.dest(directory.target.root));
-  };
-  gulp.task('build:component:page', ['build:component:javascript'], buildApplicationPage);
-
-  var buildApplicationImage = () => {
-    return gulp.src(processable.image)
-      .pipe(plugin.image())
-      .pipe(gulp.dest(directory.target.image));
-  };
-  gulp.task('build:component:image', ['prebuild'], buildApplicationImage);
-
-  var buildApplicationInternacionalization = () => {
-    return gulp.src(processable.internacionalization)
-      .pipe(jsonminify())
-      .pipe(gulp.dest(directory.target.root + 'data'));
-  };
-  gulp.task('build:component:internacionalization', buildApplicationInternacionalization);
-
   /**
    * Linters
    */
