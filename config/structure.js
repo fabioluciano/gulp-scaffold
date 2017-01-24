@@ -1,17 +1,19 @@
 module.exports = {
-  directory : {
-    component : {
-      source : {
-        root : './source/',
-        component : './source/component',
-        component : './source/component'
+  application : {
+    source  : {
+      root : 'source/',
+      application : {
+        root : 'application/',
+        configuration : 'configuration/',
+        modules : 'modules/'
       }
     },
-    application : {
-
-    }
+    end2end : 'end2end/',
+    dist    : 'test/',
   },
-  angular : {
-
+  component : {
+    source  : 'source/',
+    end2end : 'end2end/',
+    dist    : 'test/',
   }
-};
+}

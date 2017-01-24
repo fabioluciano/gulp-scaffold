@@ -1,8 +1,8 @@
 module.export = function(gulp, plugin, config) {
-  var whatToWatch = config.processable.javascript;
-
   var watchJavascript = () => {
-    return gulp.watch(whatToWatch, buildApplicationJavascript)
+    var whatToWatch = config.processable.javascript;
+
+    return gulp.watch(whatToWatch)
       .on('change', (file) => {
         console.log('O arquivo ' + file + ' foi modificado! Executando build:component:javascript\n');
         console.log(file);
