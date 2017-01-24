@@ -1,6 +1,9 @@
 module.export = function(gulp, plugin, config) {
   var buildComponentJavascript = () => {
-    return gulp.src(processable.javascript)
+    var whatToBuild   = config.processable.javascript,
+        whereToDeploy = directory.target.javascript;
+
+    return gulp.src(whatToBuild)
       .pipe(plugin.concat('component.js'))
       .pipe(plugin.ngAnnotate({
         single_quotes : true

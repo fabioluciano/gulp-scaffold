@@ -1,5 +1,7 @@
 module.export = function(gulp, plugin, config) {
   var buildComponentView = () => {
+    var whatToBuild = config.processable.page;
+
     return gulp.src(processable.page)
       .pipe(plugin.pug())
       .pipe(plugin.angularTemplatecache({
@@ -14,5 +16,5 @@ module.export = function(gulp, plugin, config) {
   };
 
   return gulp
-    .task('build:component:page', ['build:component:javascript'], buildComponentView);
+    .task('build:component:view', ['build:component:javascript'], buildComponentView);
 };

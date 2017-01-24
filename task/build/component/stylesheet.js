@@ -1,8 +1,11 @@
 module.export = function(gulp, plugin, config) {
   var buildComponentStylesheet = () => {
-    return gulp.src(processable.stylesheet)
+    var whatToBuild   = config.processable.stylesheet,
+        whereToDeploy = directory.target.stylesheet;
+
+    return gulp.src(whatToBuildt)
       .pipe(plugin.less())
-      .pipe(gulp.dest(directory.target.stylesheet));
+      .pipe(gulp.dest(whereToDeploy));
   };
 
   return gulp

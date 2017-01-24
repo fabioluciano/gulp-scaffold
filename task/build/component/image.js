@@ -1,8 +1,11 @@
 module.export = function(gulp, plugin, config) {
   var buildComponentImage = () => {
-    return gulp.src(processable.image)
+    var whatToBuild   = config.processable.image,
+        whereToDeploy = directory.target.image;
+
+    return gulp.src(whatToBuild)
       .pipe(plugin.image())
-      .pipe(gulp.dest(directory.target.image));
+      .pipe(gulp.dest(whereToDeploy));
   };
 
   return gulp

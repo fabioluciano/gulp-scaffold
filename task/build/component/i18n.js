@@ -1,8 +1,11 @@
 module.export = function(gulp, plugin, config) {
   var buildComponentI18n = () => {
-    return gulp.src(processable.internacionalization)
+    var whatToBuild   = config.processable.internacionalization,
+        whereToDeploy = directory.target.i18n;
+
+    return gulp.src(whatToBuild)
       .pipe(jsonminify())
-      .pipe(gulp.dest(directory.target.root + 'data'));
+      .pipe(gulp.dest(whereToDeploy));
   };
 
   return gulp
