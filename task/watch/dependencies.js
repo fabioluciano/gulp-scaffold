@@ -1,6 +1,8 @@
 module.export = function(gulp, plugin, config) {
   var watchBowerDependencies = () => {
-    return gulp.watch('bower.json', ['vendor'])
+    var whatToWatch = 'bower.json';
+
+    return gulp.watch(whatToWatch)
       .on('change', (file) => {
         console.log('Idenficada mudança no arquivo de dependências! Executando vendor');
       });
