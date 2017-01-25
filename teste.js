@@ -1,17 +1,7 @@
 var config = require('./config/structure.js');
-var filesystem = require('fs');
+var util = require('./common/util.js');
 
-var structure = config;
+var structure = config.component;
 
-var createStructure = (iterableObject) => {
-  Object.keys(iterableObject).map((key, index) => {
-    var value = iterableObject[key],
-      createDirectory = (directory) => {
-        console.log(directory);
-      };
-
-    return ((typeof value) === 'object') ? createStructure(value) : createDirectory(value);
-  });
-}
-
-createStructure(structure);
+util.createStructureObjectBased(structure);
+// console.log(util);
