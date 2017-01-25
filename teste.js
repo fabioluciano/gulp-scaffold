@@ -1,7 +1,7 @@
 var config = require('./config/structure.js');
 var filesystem = require('fs');
 
-var structure = config.application;
+var structure = config;
 
 var createStructure = (iterableObject) => {
   Object.keys(iterableObject).map((key, index) => {
