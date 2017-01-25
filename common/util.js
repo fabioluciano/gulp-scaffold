@@ -1,5 +1,7 @@
 module.exports = (() => {
-  var filesystem = require('fs');
+  const filesystem = require('fs');
+  const path = require('path');
+  const recursive = require('recursive-readdir-synchronous');
 
   var createStructure = (iterableObject) => {
     Object.keys(iterableObject).map((key, index) => {
@@ -14,12 +16,41 @@ module.exports = (() => {
     });
   };
 
+  var avaliableTasks = (newFather) => {
+    const fatherDirectory = newFather || path.dirname(__dirname) + '/task/';
+    const things = filesystem.readdirSync(fatherDirectory);
+
+
+    console.log(recursive(fatherDirectory, ['template']));
+    // for(thing of things) {
+    //   const thingPath = fatherDirectory + thing,
+    //     thingStat = filesystem.statSync(thingPath);
+    //
+    //   if(thingStat.isDirectory()) {
+    //     // return avaliableTasks(thingPath + '/')
+    //   } else {
+    //     console.log(thingPath);
+    //   }
+    // };
+
+    // console.log(globalThingPath);
+
+  };
+
   var requireTask = (slugTask) => {
-    console.log(slugTask);
-  }
+    const rearrangedSlug = slugTask.replace(/:/g, '/');
+    const taskModule = path.dirname(__dirname) + '/task/' + rearrangedSlug;
+
+    try {
+      return require(taskModule);
+    } catch(exception) {
+      console.log(exception);
+    }
+  };
 
   return {
-    createStructureObjectBased : createStructure,
+    createStructure : createStructure,
+    avaliableTasks : avaliableTasks,
     requireTask : requireTask
   }
 })();

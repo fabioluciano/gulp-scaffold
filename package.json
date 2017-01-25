@@ -17,7 +17,6 @@
     "gulp-csslint": "latest",
     "gulp-image": "^2.7.2",
     "gulp-jshint": "latest",
-    "gulp-util": "latest",
     "gulp-jsonminify": "latest",
     "gulp-less": "latest",
     "gulp-lesshint": "^2.1.0",
@@ -29,10 +28,14 @@
     "gulp-pug-linter": "latest",
     "gulp-uglify": "latest",
     "gulp-uglifycss": "latest",
+    "gulp-util": "latest",
     "gulp-watch": "latest",
     "gulp-webserver": "latest",
     "jshint": "latest",
     "jshint-stylish": "latest",
-    "pug": "latest"
+    "node": "^7.4",
+    "pug": "latest",
+    "recursive-readdir": "^2.1.0",
+    "recursive-readdir-synchronous": "0.0.3"
   }
 }

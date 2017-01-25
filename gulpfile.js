@@ -2,11 +2,21 @@
   'use strict';
 
   var gulp = require('gulp'),
+    config = {
+      structure : require('./config/structure')
+    },
     util = require('./common/util'),
     plugin = require('gulp-load-plugins')({
       lazy: true,
       camelize: true
     });
+
+// util.requireTask('build:vendor:stylesheet');
+
+util.avaliableTasks();
+// gulp.task('default', [
+//   util.requireTask('lint', { gulp, plugin, config})
+// ]);
 
 
 
