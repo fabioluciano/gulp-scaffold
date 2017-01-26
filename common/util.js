@@ -38,8 +38,9 @@ module.exports = (() => {
 
   var requireTask = (slugTask) => {
     if(avaliableTasks().indexOf(slugTask) > 0) {
-      const rearrangedSlug = slugTask.replace(/:/g, '/');
-      const taskModule = path.dirname(__dirname) + '/task/' + rearrangedSlug;
+      const
+        rearrangedSlug = slugTask.replace(/:/g, '/'),
+        taskModule = path.dirname(__dirname) + '/task/' + rearrangedSlug;
 
     } else {
       console.log('A tarefa ' + slugTask + ' invocada não existe!');
@@ -58,10 +59,9 @@ module.exports = (() => {
   };
 
 
-
   return {
     createStructure : createStructure,
-    // getAvaliableTasks : avaliableTasks,
+    getAvaliableTasks : avaliableTasks,
     requireTask : requireTask
   }
 })();

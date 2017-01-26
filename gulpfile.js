@@ -5,18 +5,16 @@
     config = {
       structure : require('./config/structure')
     },
+    path = require('path'),
     util = require('./common/util'),
     plugin = require('gulp-load-plugins')({
       lazy: true,
       camelize: true
     });
 
-util.requireTask('build:vendor:stylessheet');
+// util.requireTask('build:vendor:stylesheet');
 
-// console.log(util.getAvaliableTasks());
-// gulp.task('default', [
-//   util.requireTask('lint', { gulp, plugin, config})
-// ]);
+util.avaliableTasks();
 
 
 

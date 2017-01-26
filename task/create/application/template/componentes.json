@@ -1,0 +1,5 @@
+{
+  "ngc-reglist" : "https://gitlab.apoio.fsw.ctis.com.br/componentes-angular/ngc-listreg.git",
+  "ngc-formrender" : "https://gitlab.apoio.fsw.ctis.com.br/componentes-angular/ngc-formrender.git",
+  "ngc-buttonbar" : "https://gitlab.apoio.fsw.ctis.com.br/componentes-angular/ngc-buttonbar.git"
+}
