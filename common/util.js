@@ -1,6 +1,7 @@
 module.exports = (() => {
   const filesystem = require('fs');
   const path = require('path');
+  const util = require('gulp-util');
   const recursive = require('recursive-readdir-synchronous');
 
   var createStructure = (iterableObject) => {
@@ -22,7 +23,7 @@ module.exports = (() => {
       things = filesystem.readdirSync(fatherDirectory);
     var
       taskFiles = recursive(fatherDirectory, ['template']).sort(sortByType),
-      avaliableTasks = [];
+      avaliableTasks = {};
 
     for(var file of taskFiles) {
       const
@@ -30,20 +31,19 @@ module.exports = (() => {
         slugged = file.match(regex)[0]
           .replace('/task/', '').replace('.', '').replace(/\//g, ':');
 
-      avaliableTasks.push(slugged);
+      avaliableTasks[slugged] = file;
     }
 
     return avaliableTasks;
   };
 
   var requireTask = (slugTask) => {
-    if(avaliableTasks().indexOf(slugTask) > 0) {
-      const
-        rearrangedSlug = slugTask.replace(/:/g, '/'),
-        taskModule = path.dirname(__dirname) + '/task/' + rearrangedSlug;
+    const tasks = avaliableTasks();
 
+    if(Object.keys(tasks).indexOf(slugTask) > 0) {
+      return require(tasks[slugTask]);
     } else {
-      console.log('A tarefa ' + slugTask + ' invocada não existe!');
+      console.log(util.colors.red.bold('A tarefa ' + slugTask + ' invocada não existe!'));
     }
   };
 

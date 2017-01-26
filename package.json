@@ -26,6 +26,7 @@
     "gulp-prompt": "latest",
     "gulp-pug": "latest",
     "gulp-pug-linter": "latest",
+    "gulp-sequence": "^0.4.6",
     "gulp-uglify": "latest",
     "gulp-uglifycss": "latest",
     "gulp-util": "latest",

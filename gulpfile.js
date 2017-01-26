@@ -5,20 +5,25 @@
     config = {
       structure : require('./config/structure')
     },
-    path = require('path'),
     util = require('./common/util'),
     plugin = require('gulp-load-plugins')({
       lazy: true,
       camelize: true
     });
 
-// util.requireTask('build:vendor:stylesheet');
 
-util.avaliableTasks();
+  util.requireTask('lint');
+  //
+  // gulp.task('default', (cb) => {
+  //   return plugin.sequence([
+  //     'lint',
+  //     'build',
+  //     'serve',
+  //     'watch'
+  //   ], cb);
+  // });
 
 
-
-  // gulp.task('default', ['lint', 'build', 'serve', 'watch']);
   // gulp.task('prebuild', ['prebuild:cleanup','prebuild:bower']);
   // gulp.task('build', [
   //   'build:vendor',
