@@ -33,7 +33,6 @@
     "gulp-webserver": "latest",
     "jshint": "latest",
     "jshint-stylish": "latest",
-    "node": "^7.4",
     "pug": "latest",
     "recursive-readdir": "^2.1.0",
     "recursive-readdir-synchronous": "0.0.3"

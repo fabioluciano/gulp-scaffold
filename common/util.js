@@ -16,46 +16,52 @@ module.exports = (() => {
     });
   };
 
-  var avaliableTasks = (newFather) => {
-    const fatherDirectory = newFather || path.dirname(__dirname) + '/task/';
-    const things = filesystem.readdirSync(fatherDirectory);
-
-
-    var taskFiles = recursive(fatherDirectory, ['template']);
+  var avaliableTasks = () => {
+    const
+      fatherDirectory = path.dirname(__dirname) + '/task/',
+      things = filesystem.readdirSync(fatherDirectory);
+    var
+      taskFiles = recursive(fatherDirectory, ['template']).sort(sortByType),
+      avaliableTasks = [];
 
     for(var file of taskFiles) {
-      var regex = /\/task\/((.*?)[\/.])+/g;
-      console.log(file.match(regex))
+      const
+        regex = /\/task\/((.*?)[\/.])+/g,
+        slugged = file.match(regex)[0]
+          .replace('/task/', '').replace('.', '').replace(/\//g, ':');
+
+      avaliableTasks.push(slugged);
     }
-    // for(thing of things) {
-    //   const thingPath = fatherDirectory + thing,
-    //     thingStat = filesystem.statSync(thingPath);
-    //
-    //   if(thingStat.isDirectory()) {
-    //     // return avaliableTasks(thingPath + '/')
-    //   } else {
-    //     console.log(thingPath);
-    //   }
-    // };
 
-    // console.log(globalThingPath);
-
+    return avaliableTasks;
   };
 
   var requireTask = (slugTask) => {
-    const rearrangedSlug = slugTask.replace(/:/g, '/');
-    const taskModule = path.dirname(__dirname) + '/task/' + rearrangedSlug;
+    if(avaliableTasks().indexOf(slugTask) > 0) {
+      const rearrangedSlug = slugTask.replace(/:/g, '/');
+      const taskModule = path.dirname(__dirname) + '/task/' + rearrangedSlug;
 
-    try {
-      return require(taskModule);
-    } catch(exception) {
-      console.log(exception);
+    } else {
+      console.log('A tarefa ' + slugTask + ' invocada não existe!');
     }
   };
 
+  var sortByType = (first, second) => {
+    const
+      firstPath = first.split('/').length,
+      secondPath = second.split('/').length;
+
+    if (firstPath < secondPath) return -1;
+    if (firstPath > secondPath) return 1;
+
+    return first.localeCompare(second);
+  };
+
+
+
   return {
     createStructure : createStructure,
-    avaliableTasks : avaliableTasks,
+    // getAvaliableTasks : avaliableTasks,
     requireTask : requireTask
   }
 })();
