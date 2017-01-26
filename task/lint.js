@@ -1,5 +1,9 @@
-module.export = function(gulp, plugin, config) {
-  console.log(gulp);
-  console.log(plugin);
-  console.log(config);
+module.exports = function(gulp, plugin, config, requireTask) {
+  return () => {
+    plugin.sequence([
+      requireTask('lint:javascript'),
+      requireTask('lint:stylesheet'),
+      requireTask('lint:view')      
+    ]);
+  };
 };

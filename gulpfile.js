@@ -1,27 +1,16 @@
 (function () {
   'use strict';
 
-  var gulp = require('gulp'),
-    config = {
-      structure : require('./config/structure')
-    },
-    util = require('./common/util'),
-    plugin = require('gulp-load-plugins')({
-      lazy: true,
-      camelize: true
-    });
+  const
+    gulp     = require('gulp'),
+    sequence = require('gulp-sequence'),
+    util     = require('./common/util');
 
-
-  util.requireTask('lint');
-  //
-  // gulp.task('default', (cb) => {
-  //   return plugin.sequence([
-  //     'lint',
-  //     'build',
-  //     'serve',
-  //     'watch'
-  //   ], cb);
-  // });
+  gulp.task('default', (cb) => {
+    return sequence([
+      util.requireTask('lint')
+    ], cb);
+  });
 
 
   // gulp.task('prebuild', ['prebuild:cleanup','prebuild:bower']);

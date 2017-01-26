@@ -1,12 +1,23 @@
 module.exports = (() => {
-  const filesystem = require('fs');
-  const path = require('path');
-  const util = require('gulp-util');
-  const recursive = require('recursive-readdir-synchronous');
+  const
+    filesystem  = require('fs'),
+    gulp        = require('gulp'),
+    path        = require('path'),
+    util        = require('gulp-util'),
+    recursive   = require('recursive-readdir-synchronous'),
+    plugin      = require('gulp-load-plugins')({
+      lazy: true,
+      camelize: true
+    });
+
+  const
+    that = this,
+    config = require('../configuration/configuration');
 
   var createStructure = (iterableObject) => {
     Object.keys(iterableObject).map((key, index) => {
-      var value = iterableObject[key],
+      var
+        value = iterableObject[key],
         createDirectory = (directory) => {
           if( ! filesystem.existsSync(directory)) {
             filesystem.mkdirSync(directory);
@@ -21,6 +32,7 @@ module.exports = (() => {
     const
       fatherDirectory = path.dirname(__dirname) + '/task/',
       things = filesystem.readdirSync(fatherDirectory);
+
     var
       taskFiles = recursive(fatherDirectory, ['template']).sort(sortByType),
       avaliableTasks = {};
@@ -38,12 +50,14 @@ module.exports = (() => {
   };
 
   var requireTask = (slugTask) => {
-    const tasks = avaliableTasks();
+    const
+      tasks = avaliableTasks();
 
     if(Object.keys(tasks).indexOf(slugTask) > 0) {
-      return require(tasks[slugTask]);
+      return require(tasks[slugTask])(gulp, plugin, config, requireTask)();
     } else {
-      console.log(util.colors.red.bold('A tarefa ' + slugTask + ' invocada não existe!'));
+      console.log(util.colors.red.bold.inverse('A tarefa ' + slugTask + ' invocada não existe!'));
+      return false;
     }
   };
 
