@@ -4,8 +4,6 @@ module.exports = (() => {
     task        = require('./task'),
     processable = require('./processable');
 
-    console.log(processable(structure));
-
   return {
     structure : structure,
     task : task,

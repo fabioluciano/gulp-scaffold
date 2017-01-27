@@ -6,8 +6,14 @@ module.exports = (() => {
         application : {
           root : 'source/application/',
           configuration : 'source/application/configuration/',
-          modules : 'source/application/modules/'
-        }
+          modules : 'source/application/modules/',
+          template : 'source/application/template/'
+        },
+        asset : {
+          root : 'source/asset/',
+          image : '/source/asset/image/',
+          stylesheet : '/source/asset/stylesheet/'
+        },
       },
       end2end : 'end2end/',
       dist    : 'test/',
@@ -31,14 +37,15 @@ module.exports = (() => {
         filter : 'filter/',
         i18n : 'i18n/',
         providers : {
-          root : 'providers',
+          root : 'providers/',
           constant : 'providers/constant',
           decorator : 'providers/decorator',
           factory : 'providers/factory',
           provider : 'providers/provider',
           service : 'providers/service',
           value : 'providers/value'
-        }
+        },
+        route : 'route/'
       }
     }
   };
