@@ -1,13 +1,11 @@
-module.export = function(gulp, plugin, config) {
-  var lintStylesheet = () => {
-    var whatToLint = config.processable.stylesheet;
+module.exports = function(gulp, plugin, config, requireTask) {
+  return () => {
+    const
+      whatToLint = config.processable.application.stylesheet;
 
     return gulp.src(whatToLint)
       .pipe(plugin.lesshint())
       .pipe(plugin.lesshint.reporter())
       .pipe(plugin.lesshint.failOnError());
   };
-
-  return gulp
-    .task('lint:stylesheet', lintStylesheet);
 };

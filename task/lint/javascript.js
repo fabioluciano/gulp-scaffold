@@ -1,6 +1,8 @@
 module.exports = function(gulp, plugin, config, requireTask) {
   return () => {
-    var whatToLint = config.processable.javascript;
+    const
+      stylish = require('jshint-stylish'),
+      whatToLint = config.processable.application.javascript;
 
     return gulp.src(whatToLint)
       .pipe(plugin.jshint())

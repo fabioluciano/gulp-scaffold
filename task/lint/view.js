@@ -1,5 +1,5 @@
-module.export = function(gulp, plugin, config) {
-  var lintView = () => {
+module.exports = function(gulp, plugin, config, requireTask) {
+  return () => {
     var whatToLint = config.processable.view;
 
     return gulp.src(whatToLint)
@@ -7,6 +7,5 @@ module.export = function(gulp, plugin, config) {
       .pipe(plugin.pugLinter.reporter('fail')).
   };
 
-  return gulp
-    .task('lint:view', lintView);
+
 };
