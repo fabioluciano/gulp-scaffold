@@ -72,7 +72,6 @@ module.exports = (() => {
     return first.localeCompare(second);
   };
 
-
   return {
     createStructure : createStructure,
     getAvaliableTasks : avaliableTasks,
