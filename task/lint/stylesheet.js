@@ -1,4 +1,5 @@
-module.exports = function(gulp, plugin, config, requireTask) {
+module.exports = function(...args) {
+  console.log(arguments);
   return () => {
     const
       whatToLint = config.processable.application.stylesheet;
@@ -6,6 +7,6 @@ module.exports = function(gulp, plugin, config, requireTask) {
     return gulp.src(whatToLint)
       .pipe(plugin.lesshint())
       .pipe(plugin.lesshint.reporter())
-      .pipe(plugin.lesshint.failOnError());
+      .pipe(plugin.lesshint.failOnError());ava
   };
 };

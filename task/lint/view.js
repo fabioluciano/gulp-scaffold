@@ -1,11 +1,10 @@
 module.exports = function(gulp, plugin, config, requireTask) {
   return () => {
-    var whatToLint = config.processable.view;
+    const
+      whatToLint = config.processable.application.view;
 
     return gulp.src(whatToLint)
       .pipe(plugin.pugLinter())
-      .pipe(plugin.pugLinter.reporter('fail')).
+      .pipe(plugin.pugLinter.reporter('fail'));
   };
-
-
 };

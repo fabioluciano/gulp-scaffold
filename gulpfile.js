@@ -2,7 +2,7 @@
   'use strict';
 
   const
-    gulp     = require('gulp'),
+    gulp = require('gulp-runtime').create(),
     sequence = require('gulp-sequence'),
     util     = require('./common/util');
 

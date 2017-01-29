@@ -1,7 +1,7 @@
 module.exports = (() => {
   const
     filesystem  = require('fs'),
-    gulp        = require('gulp'),
+    gulp        = require('gulp-runtime').create(),
     path        = require('path'),
     util        = require('gulp-util'),
     recursive   = require('recursive-readdir-synchronous'),
